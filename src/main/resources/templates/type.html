@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Тип</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <div th:insert="fragment/header :: headerBag"></div>
+</head>
+<style>
+  .grid {
+  display: grid;
+    grid-template-columns: repeat(4, 150px);
+    grid-template-rows: repeat(4, auto);
+}
+.grid > * {
+  margin: 1px;
+}
+a{
+  text-decoration: none
+}
+</style>
+
+<body class=" text-bg-light">
+<main class="col-md-5 mx-auto">
+  <h1 class="text-center">Тип</h1>
+  <form method="post" th:object="${type}">
+      <input type="text" th:field="*{name}" name="name" placeholder="Название"
+             class=" fs-4 fw-light form-control border-dark border-3">
+      <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text"></div><br/>
+      <input type="submit" value="Добавить" class="btn btn-dark"> <br/>
+    </form><br/>
+
+    <div class="grid">
+      <div th:each="el : ${listType}">
+        <p th:text="'Тип: '+${el.name}"></p>
+        <a class="link-dark fw-normal" th:href="'/type/delete/'+${el.id}">Удалить</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

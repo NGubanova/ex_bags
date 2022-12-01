@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Закупки. Детали</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: headerBag"></div>
+</head>
+
+<style>
+    a{
+        text-decoration: none
+    }
+</style>
+
+<body class=" text-center text-bg-light">
+<main class="col-md-6 mx-auto pt-5">
+    <div th:each="el : ${purchase}"
+    class="row rounded-4 border border-dark text-start p-5">
+        <div class="feature col pe-5">
+            <h4 th:text="${el.brand.getName()}"
+               class="display-1 fw-bold pb-4"></h4>
+            <h4 th:text="${el.model}"></h4>
+        </div>
+        <div class="feature col">
+            <p th:text="'Тип: '+${el.type.getName()}"></p>
+            <p th:text="'Цвет: '+${el.color}"></p>
+            <p th:text="'Состояние: '+${el.status}"></p>
+            <p th:text="'Цена: '+${el.price}"></p>
+            <div
+            class="border-top">
+                <a th:href="'/purchase/edit/'+${el.getId()}" class="link-dark fw-normal">Изменить</a>
+                <a th:href="'/purchase/delete/'+${el.getId()}" class="link-dark fw-normal px-5">Удалить</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <a th:href="'/purchase'" class="link-dark fw-normal">Назад</a>
+    </div>
+</main>
+</body>
+</html>

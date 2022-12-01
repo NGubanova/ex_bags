@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ячейка</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <div th:insert="fragment/header :: headerBag"></div>
+</head>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 200px);
+    grid-template-rows: repeat(4, auto);
+  }
+  .grid > * {
+    margin: 1px;
+  }
+  a{
+    text-decoration: none
+  }
+</style>
+
+<body class="text-bg-light">
+<main class="col-md-5 mx-auto">
+    <h1 class="text-center">Ячейка</h1>
+    <form th:object="${cell}" method="post">
+      <div class="form-floating">
+          <input id="column_" name="column_" type="number" th:field="*{column_}" placeholder="Столбец"
+                 class="h-150 d-inline-block fw-light form-control border-dark border-3">
+          <label for="column_" class="fw-light">Столбец</label>
+          <div th:if="${#fields.hasErrors('column_')}" th:errors="*{column_}" class="form-text"></div>
+      </div>
+      <br/>
+        <div class="form-floating">
+          <input id="row_" name="row_" type="number" th:field="*{row_}" placeholder="Ряд"
+                 class="h-150 d-inline-block fw-light form-control border-dark border-3">
+          <label for="row_" class="fw-light">Ряд</label>
+          <div th:if="${#fields.hasErrors('row_')}" th:errors="*{row_}" class="form-text"></div>
+      </div>
+      <br/>
+      <input type="submit" value="Добавить" class="btn btn-dark"> <br/>
+    </form></br>
+
+    <div class="grid">
+        <div th:each="el : ${listCell}">
+            <a th:href="'/cell/edit/'+${el.id}" class="link-dark fw-normal">
+                <p th:text="'Номер ячейки: '+${el.id}"></p>
+                <p th:text="'Столбец: '+${el.column_}"></p>
+                <p th:text="'Ряд: '+${el.row_}"></p>
+            </a>
+          <a th:href="'/cell/delete/'+${el.id}" class="link-dark fw-normal">Удалить</a>
+        </div>
+  </div>
+</main>
+</body>
+</html>
