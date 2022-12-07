@@ -11,10 +11,10 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.REFRESH)
     private Type type;
 
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.REFRESH)
     private Brand brand;
 
     @NotBlank(message = "Заполните название модели")
@@ -27,8 +27,8 @@ public class Purchase {
     @NotNull(message = "Введите цену модели")
     private Integer price;
 
-    @OneToMany(mappedBy = "purchase", fetch = FetchType.EAGER)
-    private Collection<Bag> bags;
+    @OneToOne(optional = true,mappedBy = "purchase")
+    private Bag bags;
 
     public Purchase() {
 
@@ -74,11 +74,11 @@ public class Purchase {
         this.color = color;
     }
 
-    public Collection<Bag> getBags() {
+    public Bag getBags() {
         return bags;
     }
 
-    public void setBags(Collection<Bag> bags) {
+    public void setBags(Bag bags) {
         this.bags = bags;
     }
 

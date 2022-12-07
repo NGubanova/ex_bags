@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,23 +7,39 @@
     <div th:insert="fragment/header :: headerEmployee"></div>
 </head>
 
-<body class="text-bg-light">
-<div class="col-md-5 mx-auto">
-<h1>Добавление должности</h1>
-    <div th:if="${error}" class="form-text">
-        Такая должность уже есть
-    </div>
-<form method="post" th:object="${post}">
-    <input type="text" th:field="*{name}"  name="name" placeholder="Название"/>
-    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+<style>
+    a{
+        text-decoration: none
+    }
+</style>
 
-    <input type="number" th:field="*{salary}" name="salary" placeholder="Оклад"/>
-    <div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></div>
+<body class="text-center text-bg-light">
+    <main class="col-md-5 mx-auto">
+        <h1>Добавление должности</h1>
+        <div th:if="${error}" class="form-text">
+            Такая должность уже есть
+        </div>
+        <form method="post" th:object="${post}">
 
-    <input type="submit" value="Отправить данные"> <br/>
-</form> <br>
-<div>
-    <a href="/post">Назад</a>
-</div>
+            <div class="form-floating">
+                <input type="text" th:field="*{name}" id="name" name="name" placeholder="Название"
+                       class="h-150 d-inline-block fw-light form-control border-dark border-3">
+                <label for="name" class="fw-light">Название</label>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+            </div></br>
+
+            <div class="form-floating">
+                <input type="number" th:field="*{salary}" id="salary" name="salary" placeholder="Оклад"
+                       class="h-150 d-inline-block fw-light form-control border-dark border-3">
+                <label for="salary" class="fw-light">Оклад</label>
+                <div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></div>
+            </div></br>
+
+            <input type="submit" value="Добавить" class="btn btn-dark"> <br/>
+        </form> <br>
+        <div>
+            <a class="link-dark fw-normal" href="/post">Назад</a>
+        </div>
+    </main>
 </body>
 </html>

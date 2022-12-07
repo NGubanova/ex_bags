@@ -10,25 +10,31 @@
 <style>
   .grid {
     display: grid;
-    grid-template-columns: repeat(4, 150px);
+    grid-template-columns: repeat(4, 200px);
     grid-template-rows: repeat(4, auto);
   }
   .grid > * {
     margin: 1px;
   }
+   a{
+     text-decoration: none
+   }
 </style>
 
 <body class="text-bg-light">
-<div class="col-md-5 mx-auto">
+<div class="col-md-7 mx-auto">
+  <h1 class="text-center">Должность</h1>
   <div>
-    <a href="/post/add" class="link-success fw-normal">Добавить</a>
+    <a href="/post/add" class="btn btn-dark">Добавить</a>
   </div>
+  <br>
   <div class="grid">
         <div th:each="el : ${listPost}">
-          <p th:text="'Должность: '+${el.name}"></p>
+          <a th:href="'/post/edit/'+${el.id}" class="link-dark">
+          <p th:text="${el.name}"></p>
           <p th:text="'Оклад: '+${el.salary}"></p>
-          <a th:href="'/post/edit/'+${el.id}" class="link-success fw-normal">Изменить</a>
-          <a th:href="'/post/delete/'+${el.id}" class="link-success fw-normal">Удалить</a>
+          </a>
+          <a th:href="'/post/delete/'+${el.id}" class="link-dark">Удалить</a>
         </div>
   </div>
 </div>

@@ -63,8 +63,8 @@ public class EmployeeController {
     @GetMapping("/edit/{id}")
     public String employeeEdit(Model model,
                           @PathVariable long id) {
-        User employee = employeeRepository.findById(id).orElseThrow();
-        model.addAttribute("employee", employee);
+        User user = employeeRepository.findById(id).orElseThrow();
+        model.addAttribute("user", user);
         Iterable<Role> roles = List.of(Role.values());
         model.addAttribute("roleName", roles);
         Iterable<Post> ListPost = postRepository.findAll();
@@ -74,20 +74,29 @@ public class EmployeeController {
     }
 
     @PostMapping("/edit/{id}")
-    public String employeeEdit(@RequestParam Long id,
+    public String employeeEdit(@Valid User user,
+                               BindingResult result, Model model,
+                               @RequestParam Long id,
                                @RequestParam String[] roles,
                                @RequestParam String listPost) {
+        user.setPassword(employeeRepository.findById(id).get().getPassword());
+        Iterable<Role> roleList = List.of(Role.values());
+        model.addAttribute("roleName", roleList);
+        Iterable<Post> ListPost = postRepository.findAll();
+        model.addAttribute("listPost", ListPost);
         Post post = postRepository.findByName(listPost);
-        User employee = employeeRepository.findById(id).orElseThrow();
 
-        employee.getRoles().clear();
+        if (result.hasErrors())
+            return ("/employee/edit");
+
+        user.getRoles().clear();
         for(String role: roles){
-            employee.getRoles().add(Role.valueOf(role));
+            user.getRoles().add(Role.valueOf(role));
         }
-        employee.setPost(post);
-        employee.setActive(true);
-        employeeRepository.save(employee);
-        return("redirect:/employee/details/" + employee.getId());
+        user.setPost(post);
+        user.setActive(true);
+        employeeRepository.save(user);
+        return("redirect:/employee/details/" + user.getId());
     }
 
     @GetMapping("/delete/{id}")

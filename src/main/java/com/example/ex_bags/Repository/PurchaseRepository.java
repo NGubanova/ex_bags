@@ -8,4 +8,5 @@ import java.util.List;
 public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
  public List<Purchase> findByModelContaining(String model);
  Purchase findByModel(String model);
+ long countByBrand_Id(long id);
 }

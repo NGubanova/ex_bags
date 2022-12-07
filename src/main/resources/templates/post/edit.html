@@ -7,21 +7,27 @@
     <div th:insert="fragment/header :: headerEmployee"></div>
 </head>
 
-<body class="text-bg-light">
-<div class="col-md-5 mx-auto fw-light">
+<body class="text-bg-light text-center">
+<main class="col-md-5 mx-auto fw-light">
     <h1>Изменение должности</h1>
-    <div >
+    <div>
         <form method="post" th:object="${post}">
-            <input type="text" name="name" th:field="*{name}" th:value="${name}" placeholder="Название"
-                   class=" fs-4 fw-light form-control border-success border-3"><br/>
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text"></div><br/>
+        <div class="form-floating">
+            <input type="text" id="name" name="name" th:field="*{name}" th:value="${name}" placeholder="Название"
+                   class="h-150 d-inline-block fw-light form-control border-dark border-3">
+            <label for="name" class="fw-light">Должность</label>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text"></div>
+        </div><br/>
 
-            <input type="number" name="salary" th:field="*{salary}" th:value="${salary}" placeholder="Оклад"
-                   class=" fs-4 fw-light form-control border-success border-3"><br/>
-            <div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" class="form-text"></div><br/>
-            <input class="btn btn-success"  type="submit" value="Отправить данные"> <br/>
+        <div class="form-floating">
+            <input type="number" id="salary" name="salary" th:field="*{salary}" th:value="${salary}" placeholder="Оклад"
+                   class="h-150 d-inline-block fw-light form-control border-dark border-3">
+            <label for="salary" class="fw-light">Оклад</label>
+            <div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" class="form-text"></div>
+        </div><br/>
+            <input class="btn btn-dark"  type="submit" value="Изменить"> <br/>
         </form>
     </div> <br>
-</div>
+</main>
 </body>
 </html>

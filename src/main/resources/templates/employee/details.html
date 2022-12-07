@@ -2,26 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Детали о сотруднике</title>
+    <title>Пользователь. Детали</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <div th:insert="fragment/header :: headerEmployee"></div>
 </head>
+
+<style>
+    a{
+        text-decoration: none
+    }
+</style>
+
 <body class="text-bg-light">
-<div class="col-md-2 mx-auto">
-    <div th:each="el : ${people}">
-        <p th:text="'Имя Фамилия: '+${el.getName()}"></p>
+<main class="col-md-3 mx-auto pt-5">
+    <div th:each="el : ${people}" class="fs-4">
+        <p th:text="'Имя Фамилия: '+${el.getName()}" class="fs-2"></p>
         <p th:text="'Эл. почта: '+${el.username}"></p>
         <p th:text="'Должность: '+${el.getPost().getName()}"></p>
         <p th:text="'Роль: '+${el.roles}"></p>
         <p th:text="'Статус: '+${el.active}"></p>
-        <a th:href="'/employee/edit/'+${el.getId()}" class="link-success fw-normal">Изменить</a>
-        <a th:href="'/employee/delete/'+${el.getId()}" class="link-success fw-normal">Удалить</a>
+        <a th:href="'/employee/edit/'+${el.getId()}" class="link-dark fw-normal">Изменить</a>
+        <a th:href="'/employee/delete/'+${el.getId()}" class="link-dark fw-normal">Удалить</a>
     </div>
     <br>
     <div>
-        <a th:href="'/employee'" class="link-success fw-normal">Назад</a>
+        <a th:href="'/employee'" class="link-dark fw-normal">Назад</a>
     </div>
-</div>
+</main>
 
 </body>
 </html>

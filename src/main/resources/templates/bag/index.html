@@ -10,7 +10,7 @@
     <style>
         .grid {
             display: grid;
-            grid-template-columns: repeat(4, 150px);
+            grid-template-columns: repeat(4, 320px);
             grid-template-rows: repeat(4, auto);
         }
         .grid > * {
@@ -22,14 +22,12 @@
     </style>
 
     <body class="text-bg-light">
-    <main class="col-md-7 mx-auto">
+    <main class="col-md-11 mx-auto">
         <h1 class="text-center">Сумки</h1>
-        
-
-<!--        <div>-->
-<!--            <a href="/bag/add" class="link-dark fw-normal" >Добавить</a>-->
-<!--        </div></br>-->
-        <div>
+        <div class="col-md-2 mx-auto">
+            <a href="/bag/add"  class="btn btn-dark">Добавить</a>
+        </div></br>
+        <div class="col-md-2 mx-auto">
             <form action="/bag/filter" method="get">
                 <div class="form-floating">
                     <select id="listBrand" name="listBrand" style="height:60px"

@@ -22,27 +22,17 @@ public class Delivery {
 
     @NotBlank(message = "Поле не должно быть пустым!")
     private String day;
-
-    @NotBlank(message = "Поле не должно быть пустым!")
     private String period;
 
-    @NotNull(message = "Введите цену дотавки")
-    private Integer price;
-
-    @NotBlank(message = "Поле не должно быть пустым!")
-    @Size(min = 2, max = 255, message = "Поле должно содержать от 2 до 255 символов")
-    private String comment;
-
-    @NotBlank(message = "Поле не должно быть пустым!")
-    @Size(min = 2, max = 30, message = "Поле должно содержать от 2 до 30 символов")
+//    @NotBlank(message = "Поле не должно быть пустым!")
+//    @Size(min = 2, max = 255, message = "Поле должно содержать от 2 до 255 символов")
+//    private String comment;
     private String type;
 
-    @NotBlank(message = "Поле не должно быть пустым!")
-    @Size(min = 2, max = 30, message = "Поле должно содержать от 2 до 30 символов")
+//    @NotBlank(message = "Поле не должно быть пустым!")
+//    @Size(min = 2, max = 100, message = "Поле должно содержать от 2 до 30 символов")
     private String payment;
-
-    @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER)
-    private Collection<Sale> sales;
+    private String status;
 
     public Delivery() {
     }
@@ -87,21 +77,21 @@ public class Delivery {
         this.period = period;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+//    public Integer getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(Integer price) {
+//        this.price = price;
+//    }
+//
+//    public String getComment() {
+//        return comment;
+//    }
+//
+//    public void setComment(String comment) {
+//        this.comment = comment;
+//    }
 
     public String getType() {
         return type;
@@ -119,11 +109,19 @@ public class Delivery {
         this.payment = payment;
     }
 
-    public Collection<Sale> getSales() {
-        return sales;
+    public String getStatus() {
+        return status;
     }
 
-    public void setSales(Collection<Sale> sales) {
-        this.sales = sales;
+    public void setStatus(String status) {
+        this.status = status;
     }
+
+    //    public Collection<Sale> getSales() {
+//        return sales;
+//    }
+//
+//    public void setSales(Collection<Sale> sales) {
+//        this.sales = sales;
+//    }
 }

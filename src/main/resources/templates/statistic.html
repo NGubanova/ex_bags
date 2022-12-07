@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main class="main-content">
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>        <script type="text/javascript">window.onload = function () {
+    var dataPoints = [];
+    var chart = new CanvasJS.Chart("chartContainer",{
+        title:{
+            text:"Статистика "
+        },
+        data: [{
+            type: "pie",
+            dataPoints : dataPoints,
+        }]
+    });
+    $.getJSON("http://localhost:8080/admin/api/user/", function(data) {
+        $.each(data, function(key, value){
+            console.log(value);
+            dataPoints.push({label:(value.name) , y: parseInt(value.brand)});
+        });
+        chart.render();
+    });
+}
+</script>        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+    <div>
+        <form method="post"><button>back</button></form>
+    </div>
+</main>
+</body>
+</html>

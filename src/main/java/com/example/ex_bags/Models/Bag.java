@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Optional;
 
 @Entity
 public class Bag {
@@ -21,10 +22,13 @@ public class Bag {
     @Size(min=6, max=255, message = "Длина описание должна составлять от 6 до 255 символов")
     private String description;
 
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @OneToOne(optional = true, cascade = CascadeType.REFRESH)
+    @JoinColumn(name="purchase_id")
     private Purchase purchase;
 
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    private boolean status;
+
+    @ManyToOne(optional = true, cascade = CascadeType.REFRESH)
     private Cell cell;
 
     public Bag() {
@@ -76,5 +80,13 @@ public class Bag {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

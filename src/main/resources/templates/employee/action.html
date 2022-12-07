@@ -11,7 +11,6 @@
 <div class="col-md-4 mx-auto fw-light">
   <h1>Добавление сотрудника</h1>
   <form th:each="el : ${employee}" method="post" >
-    <label>
       <input type="text" name="name" th:field="*{employee.name}" placeholder="Имя Фамилия"
            class=" fs-4 fw-light form-control border-dark border-3">
       <div th:if="${#fields.hasErrors('employee.name')}" th:errors="*{employee.name}" ></div><br/>
@@ -35,7 +34,6 @@
         <label class="form-check-label" th:text="${role}"></label>
       </div><br/>
       <input type="submit" value="Отправить данные" class="btn btn-success"> <br/>
-    </label>
   </form> <br>
   <div >
     <a class="link-success fw-normal" href="/employee">Назад</a>

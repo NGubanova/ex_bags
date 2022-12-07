@@ -2,42 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Пользователь. Изменение</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <div th:insert="fragment/header :: headerEmployee"></div>
 </head>
 
-<body class="text-bg-light">
-<div class="col-md-4 mx-auto">
-<h1>Изменения сотрудника</h1>
-    <form method="post" th:each="el:${employee}" >
-        <label>
-            <input type="hidden" readonly="readonly" name="id" th:value="${employee.id}" th:field="*{employee.id}"
-                   class=" fs-4 fw-light form-control border-success border-3"><br/>
+<style>
+    a{
+        text-decoration: none
+    }
+</style>
 
-<!--            <input type="text" readonly="readonly" name="name" th:value="${employee.name}" th:field="*{employee.name}" placeholder="Имя"-->
-<!--                   class=" fs-4 fw-light form-control border-dark border-3"><br/>-->
+<body class="text-center text-bg-light">
+<main class="col-md-5 mx-auto">
+    <h1 class="text-center">Изменение пользователя</h1>
+    <form th:object="${user}" method="post" >
+            <input name="id" type="hidden" readonly th:field="*{id}" th:value="${id}"
+                   class="fs-4 fw-light form-control border-dark border-3"><br/>
 
-            <input type="text" readonly="readonly" name="username" th:value="${employee.username}" th:field="*{employee.username}" placeholder="Эл. почта"
-                   class=" fs-4 fw-light form-control border-success border-3">
-            <br/>
+            <div class="form-floating">
+            <input id="username" name="username" type="text" th:field="*{username}" placeholder="Эл. почта"
+                   class="h-150 d-inline-block fw-light form-control border-dark border-3">
+                <label for="username" class="fw-light">Эл. Почта</label>
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="form-text text-start"></div>
+            </div><br/>
 
-            <select name="listPost" class="form-select form-select-lg border-success fw-light">
+            <div class="form-floating">
+            <input id="name" name="name" type="text" th:field="*{name}" placeholder="Эл. почта"
+                   class="h-150 d-inline-block fw-light form-control border-dark border-3">
+                <label for="name" class="fw-light">Имя Фамилия</label>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text text-start"></div>
+            </div><br/>
+
+            <select id="listPost" name="listPost" class="form-select form-select-lg border-dark fw-light">
                 <div th:each="element : ${listPost}">
                     <option th:text="${element.name}"></option>
                 </div>
             </select><br/>
 
-            <div th:each="role : ${roleName}" class=" border-success fw-light">
-                <input class="form-check-input" type="checkbox" name="roles" th:value="${role}" th:checked="${#lists.contains(el.roles,role)}">
+            <div th:each="role : ${roleName}" class="nav border-dark fw-light">
+                <input class="form-check-input" type="checkbox" name="roles" th:value="${role}" th:checked="${#lists.contains(user.roles,role)}">
                 <label class="form-check-label" th:text="${role}"></label>
             </div>
             <br/>
 
-            <input type="submit" value="Сохранить" class="btn btn-success"> <br/>
-
-        </label>
+            <input type="submit" value="Сохранить" class="btn btn-dark"> <br/>
     </form>
-</div> <br>
+</main>
 </body>
 </html>

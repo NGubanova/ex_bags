@@ -37,7 +37,7 @@ public class User {
 
     private Boolean active;
 
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.REFRESH)
     private Post post;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -47,7 +47,10 @@ public class User {
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Collection<Sale> sales;
+    private Collection<Delivery> deliveries;
+
+//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+//    private Collection<Sale> sales;
 
     public User() {
     }
@@ -114,11 +117,11 @@ public class User {
         this.roles = roles;
     }
 
-    public Collection<Sale> getSales() {
-        return sales;
-    }
-
-    public void setSales(Collection<Sale> sales) {
-        this.sales = sales;
-    }
+//    public Collection<Sale> getSales() {
+//        return sales;
+//    }
+//
+//    public void setSales(Collection<Sale> sales) {
+//        this.sales = sales;
+//    }
 }
