@@ -37,12 +37,12 @@
             <div th:if="${#fields.hasErrors('purchase.model')}" th:errors="*{purchase.model}" class="form-text text-start"></div>
         </div><br/>
 
-        <div class="form-floating">
-            <input id="description" type="text" th:field="*{description}" placeholder="Описание"
-                   class="h-150 d-inline-block fw-light form-control border-dark border-3">
-            <label for="description" class="fw-light">Описание</label>
-            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="form-text text-start"></div>
-        </div><br/>
+<!--        <div class="form-floating">-->
+<!--            <input id="description" type="text" th:field="*{description}" placeholder="Описание"-->
+<!--                   class="h-150 d-inline-block fw-light form-control border-dark border-3">-->
+<!--            <label for="description" class="fw-light">Описание</label>-->
+<!--            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="form-text text-start"></div>-->
+<!--        </div><br/>-->
 
         <div class="form-floating">
             <select id="listCell" name="listCell" style="height:60px"

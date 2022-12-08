@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Optional;
 
 @Entity
@@ -18,9 +19,9 @@ public class Bag {
     @NotNull(message = "Введите цену сумки")
     private  Integer price;
 
-    @NotBlank(message = "Заполните описание")
-    @Size(min=6, max=255, message = "Длина описание должна составлять от 6 до 255 символов")
-    private String description;
+//    @NotBlank(message = "Заполните описание")
+//    @Size(min=6, max=255, message = "Длина описание должна составлять от 6 до 255 символов")
+//    private String description;
 
     @OneToOne(optional = true, cascade = CascadeType.REFRESH)
     @JoinColumn(name="purchase_id")
@@ -30,6 +31,18 @@ public class Bag {
 
     @ManyToOne(optional = true, cascade = CascadeType.REFRESH)
     private Cell cell;
+
+    @ManyToMany
+    @JoinTable(name="bag_delivery",
+            joinColumns=@JoinColumn(name="bag_id"),
+            inverseJoinColumns=@JoinColumn(name="delivery_id"))
+    private List<Delivery> deliveries;
+
+    @ManyToMany
+    @JoinTable(name="bag_user",
+            joinColumns=@JoinColumn(name="bag_id"),
+            inverseJoinColumns=@JoinColumn(name="user_id"))
+    private List<User> users;
 
     public Bag() {
     }
@@ -50,13 +63,13 @@ public class Bag {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
 
     public Purchase getPurchase() {
         return purchase;
@@ -88,5 +101,21 @@ public class Bag {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<Delivery> getDeliveries() {
+        return deliveries;
+    }
+
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

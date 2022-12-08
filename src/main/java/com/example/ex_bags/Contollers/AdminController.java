@@ -1,6 +1,5 @@
 package com.example.ex_bags.Contollers;
 import com.example.ex_bags.Models.Brand;
-import com.example.ex_bags.Models.Purchase;
 import com.example.ex_bags.Models.Statistic;
 import com.example.ex_bags.Repository.BrandRepository;
 import com.example.ex_bags.Repository.PurchaseRepository;

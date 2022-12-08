@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <div th:insert="fragment/header :: headerUser"></div>
+</head>
+<body class="text-bg-light">
+<main class="col-md-11 mx-auto">
+    <h1 class="text-center">Kорзина</h1>
+    <div class="rounded-4 border border-dark p-5">
+        <div th:each="el : ${listBag}"
+             class="row border-bottom border-dark text-start pb-5 pt-5">
+            <div class="feature col pe-2">
+                <img th:src="${el.image}" alt="photoBag"
+                     class="img-thumbnail modal-dialog modal-sm rounded-4">
+            </div>
+            <div class="feature border-bottom border-second col pe-2">
+                <h4 th:text="${el.getPurchase().brand.getName()}"
+                    class="display-1 fw-bold pb-4"></h4>
+                <h4 th:text="${el.getPurchase().model}"></h4>
+            </div>
+            <div class="feature border-bottom border-second col">
+                <p th:text="'Тип: '+${el.getPurchase().type.getName()}"></p>
+                <p th:text="'Цвет: '+${el.getPurchase().color}"></p>
+                <p th:text="'Состояние: '+${el.getPurchase().status}"></p>
+                <p th:text="'Цена: '+${el.price}"></p>
+            </div>
+            <div class="row">
+                <a th:href="'/cart/delete/'+${el.getId()}" class="link-dark fw-normal px-5">Удалить</a>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

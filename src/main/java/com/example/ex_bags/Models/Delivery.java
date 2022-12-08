@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Delivery {
@@ -33,6 +34,12 @@ public class Delivery {
 //    @Size(min = 2, max = 100, message = "Поле должно содержать от 2 до 30 символов")
     private String payment;
     private String status;
+
+    @ManyToMany
+    @JoinTable(name="bag_delivery",
+            joinColumns=@JoinColumn(name="delivery_id"),
+            inverseJoinColumns=@JoinColumn(name="bag_id"))
+    private List<Bag> bags;
 
     public Delivery() {
     }
@@ -117,11 +124,11 @@ public class Delivery {
         this.status = status;
     }
 
-    //    public Collection<Sale> getSales() {
-//        return sales;
-//    }
-//
-//    public void setSales(Collection<Sale> sales) {
-//        this.sales = sales;
-//    }
+    public List<Bag> getBags() {
+        return bags;
+    }
+
+    public void setBags(List<Bag> bags) {
+        this.bags = bags;
+    }
 }

@@ -3,6 +3,7 @@ package com.example.ex_bags.Models;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -48,6 +49,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Collection<Delivery> deliveries;
+
+    @ManyToMany
+    @JoinTable(name="bag_user",
+            joinColumns=@JoinColumn(name="user_id"),
+            inverseJoinColumns=@JoinColumn(name="bag_id"))
+    private List<Bag> bags;
 
 //    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 //    private Collection<Sale> sales;
@@ -117,7 +124,23 @@ public class User {
         this.roles = roles;
     }
 
-//    public Collection<Sale> getSales() {
+    public Collection<Delivery> getDeliveries() {
+        return deliveries;
+    }
+
+    public void setDeliveries(Collection<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }
+
+    public List<Bag> getBags() {
+        return bags;
+    }
+
+    public void setBags(List<Bag> bags) {
+        this.bags = bags;
+    }
+
+    //    public Collection<Sale> getSales() {
 //        return sales;
 //    }
 //

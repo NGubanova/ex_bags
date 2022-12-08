@@ -8,4 +8,8 @@ import java.util.List;
 public interface BagRepository extends CrudRepository<Bag, Long> {
 
     public List<Bag> findByPurchase_BrandName(String brand);
+
+    public List<Bag> findBagsByUsersId(Long id);
+
+    Bag deleteByU
 }

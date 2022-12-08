@@ -5,7 +5,7 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a class="nav-link px-5 text-black fs-1 fw-light" href="/bag">Сумки</a></li>
           <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/employee">Пользователи</a></li>
-          <li><a class="nav-link px-5 text-black fs-1 fw-light" href="/check">Чек</a></li>
+          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/order">Заказ</a></li>
         <form th:action="@{/logout}" method="post" >
           <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
         </form>
@@ -27,7 +27,7 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/bag">Сумки</a></li>
           <li><a class="nav-link px-5 text-black fs-1 fw-light" href="/employee">Пользователи</a></li>
-          <li><a class="nav-link px-5 text-black fs-1 fw-light" href="/check">Чек</a></li>
+          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/order">Заказ</a></li>
           <form th:action="@{/logout}" method="post" >
             <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
           </form>
@@ -44,23 +44,23 @@
 </div>
 
 
-<div th:fragment="headerCheck">
+<div th:fragment="headerOrder">
   <header class="p-1 text-bg-light">
     <div class="container">
       <div d-flex justify-content-evenly align-items-center>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a class="nav-link px-5 text-black fs-1 fw-light" href="/bag">Сумки</a></li>
           <li><a class="nav-link px-5 text-black fs-1 fw-light" href="/employee">Пользователи</a></li>
-          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/check">Чек</a></li>
+          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/order">Заказ</a></li>
           <form th:action="@{/logout}" method="post" >
             <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
           </form>
         </ul>
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/delivery">Доставка</a></li>
+<!--        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">-->
+<!--          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/delivery">Доставка</a></li>-->
 <!--          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/terrain">Территория</a></li>-->
 <!--          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/programm">Программа</a></li>-->
-        </ul>
+<!--        </ul>-->
       </div>
     </div>
   </header>
@@ -73,10 +73,28 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/bag">Сумки</a></li>
           <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/employee">Пользователи</a></li>
-          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/check">Чек</a></li>
+          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/order">Заказ</a></li>
         <form th:action="@{/logout}" method="post" >
           <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
         </form>
+        </ul>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div th:fragment="headerUsers">
+  <header class="p-1 text-bg-light">
+    <div class="container">
+      <div d-flex justify-content-evenly align-items-center>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/catalog">КАТАЛОГ</a></li>
+          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/about">О НАС</a></li>
+          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/offer">ПРОДАТЬ</a></li>
+          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/contacts">КОНТАКТЫ</a></li>
+          <form th:action="@{/logout}" method="post" >
+            <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
+          </form>
         </ul>
       </div>
     </div>
@@ -89,12 +107,13 @@
       <div d-flex justify-content-evenly align-items-center>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/catalog">КАТАЛОГ</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/about">О НАС</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/offer">ПРОДАТЬ</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/contacts">КОНТАКТЫ</a></li>
-<!--          <form th:action="@{/logout}" method="post" >-->
-<!--            <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>-->
-<!--          </form>-->
+          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/cart">КОРЗИНА</a></li>
+<!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/about">О НАС</a></li>-->
+<!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/offer">ПРОДАТЬ</a></li>-->
+<!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/contacts">КОНТАКТЫ</a></li>-->
+          <form th:action="@{/login}" method="post" >
+            <input type="submit" value="Вoйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
+          </form>
         </ul>
       </div>
     </div>
