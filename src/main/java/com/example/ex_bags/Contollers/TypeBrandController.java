@@ -5,6 +5,7 @@ import com.example.ex_bags.Models.Type;
 import com.example.ex_bags.Repository.BrandRepository;
 import com.example.ex_bags.Repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@PreAuthorize("hasAuthority('STOCKMAN')")
 public class TypeBrandController {
     @Autowired
     TypeRepository typeRepository;

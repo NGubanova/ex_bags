@@ -3,6 +3,7 @@ package com.example.ex_bags.Contollers;
 import com.example.ex_bags.Models.Cell;
 import com.example.ex_bags.Repository.CellRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/cell")
+@PreAuthorize("hasAuthority('STOCKMAN')")
 public class CellController {
 
     @Autowired

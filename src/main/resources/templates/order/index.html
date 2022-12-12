@@ -24,15 +24,11 @@
     <body class="text-bg-light">
     <main class="col-md-11 mx-auto">
         <h1 class="text-center">Заказ</h1>
-<!--        <div class="col-md-2 mx-auto">-->
-<!--            <a href="/order/add"  class="btn btn-dark">Добавить</a>-->
-<!--        </div></br>-->
 
         <div class="grid">
             <div th:each="el : ${listDelivery}">
                 <a th:href="'/order/details/'+${el.id}" class="link-dark fw-normal">
                     <div>
-<!--                        <p th:text="${el.}"></p>-->
                         <p th:text="${el.type}" class="lh-1 fs-4 fw-bold ps-2 pt-2"></p>
                         <p th:text="${el.status}"></p>
                         <p th:text="${el.user.getName()}"></p>

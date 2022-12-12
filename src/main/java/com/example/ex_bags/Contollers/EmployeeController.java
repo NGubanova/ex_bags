@@ -6,6 +6,7 @@ import com.example.ex_bags.Models.Role;
 import com.example.ex_bags.Repository.EmployeeRepository;
 import com.example.ex_bags.Repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/employee")
-//@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('HR')")
 public class EmployeeController {
     @Autowired
     EmployeeRepository employeeRepository;

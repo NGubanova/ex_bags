@@ -1,13 +1,11 @@
 package com.example.ex_bags.Contollers;
 
-import com.example.ex_bags.Models.Brand;
-import com.example.ex_bags.Models.Purchase;
-import com.example.ex_bags.Models.Type;
-import com.example.ex_bags.Models.User;
+import com.example.ex_bags.Models.*;
 import com.example.ex_bags.Repository.BrandRepository;
 import com.example.ex_bags.Repository.PurchaseRepository;
 import com.example.ex_bags.Repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/purchase")
+@PreAuthorize("hasAuthority('STOCKMAN')")
 public class PurchaseController {
     @Autowired
     PurchaseRepository purchaseRepository;
@@ -39,6 +38,8 @@ public class PurchaseController {
         model.addAttribute("listType", types);
         Iterable<Brand> brands = brandRepository.findAll();
         model.addAttribute("listBrand", brands);
+        Iterable<Colors> values = List.of(Colors.values());
+        model.addAttribute("color", values);
         return "purchase/add";
     }
 
@@ -53,6 +54,8 @@ public class PurchaseController {
         model.addAttribute("listType", types);
         Iterable<Brand> brands = brandRepository.findAll();
         model.addAttribute("listBrand", brands);
+        Iterable<Colors> values = List.of(Colors.values());
+        model.addAttribute("color", values);
 
         if (result.hasErrors())
             return ("purchase/add");
@@ -80,6 +83,8 @@ public class PurchaseController {
         model.addAttribute("listType", types);
         Iterable<Brand> brands = brandRepository.findAll();
         model.addAttribute("listBrand", brands);
+        Iterable<Colors> values = List.of(Colors.values());
+        model.addAttribute("color", values);
         return ("/purchase/edit");
     }
 
@@ -93,6 +98,8 @@ public class PurchaseController {
         model.addAttribute("listType", types);
         Iterable<Brand> brands = brandRepository.findAll();
         model.addAttribute("listBrand", brands);
+        Iterable<Colors> values = List.of(Colors.values());
+        model.addAttribute("color", values);
 
         if (result.hasErrors())
             return ("/purchase/edit");
@@ -101,12 +108,6 @@ public class PurchaseController {
         purchase.setBrand(brandRepository.findByName(listBrand));
         purchaseRepository.save(purchase);
 
-        return ("redirect:/purchase");
-    }
-
-    @GetMapping("/delete/{id}")
-    public String purchaseDelete(@PathVariable long id) {
-        purchaseRepository.deleteById(id);
         return ("redirect:/purchase");
     }
 

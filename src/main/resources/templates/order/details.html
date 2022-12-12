@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Сумка. Детали</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <div th:insert="fragment/header :: header"></div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: header"
+         style="position: sticky; top:0; z-index: 3"></div>
 </head>
 
 <style>
-    a{
+    a {
         text-decoration: none
     }
 </style>
@@ -20,22 +22,17 @@
         <div class="feature col">
             <h4 th:text="'Имя: '+${el.user.getName()}"
                 class="display-1 fw-bold pb-6"></h4>
-                        <h4 th:text="'Адрес: '+${el.address}"></h4>
-                        <p th:text="'День доставки: '+${el.day}"></p>
-                        <p th:text="'Период: '+${el.period}"></p>
-                        <p th:text="'Тип доставки: '+${el.type}"></p>
-                        <p th:text="'Способ оплаты: '+${el.payment}"></p>
-                        <p th:text="'Статус доставки: '+${el.status}"></p>
+            <h4 th:text="'Адрес: '+${el.address}"></h4>
+            <p th:text="'День доставки: '+${el.day}"></p>
+            <p th:text="'Период: '+${el.period}"></p>
+            <p th:text="'Тип доставки: '+${el.type}"></p>
+            <p th:text="'Способ оплаты: '+${el.payment}"></p>
+            <p th:text="'Статус доставки: '+${el.status}"></p>
             <div
                     class="border-top">
                 <a th:href="'/order/edit/'+${el.getId()}" class="link-dark fw-normal">Изменить</a>
-<!--                <a th:href="'/order/delete/'+${el.getId()}" class="link-dark fw-normal px-5">Удалить</a>-->
             </div>
         </div>
-    </div>
-    <br>
-    <div>
-        <a th:href="'/order'" class="link-dark fw-normal">Назад</a>
     </div>
 </main>
 </body>

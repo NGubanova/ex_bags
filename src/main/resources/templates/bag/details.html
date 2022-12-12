@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Доставка. Детали</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <div th:insert="fragment/header :: header"></div>
+    <div th:insert="fragment/header :: header"
+         style="position: sticky; top:0; z-index: 3"></div>
 </head>
 
 <style>
@@ -34,14 +35,10 @@
             <div
             class="border-top">
                 <a th:href="'/bag/edit/'+${el.getId()}" class="link-dark fw-normal">Изменить</a>
-<!--                <a th:href="'/bag/delete/'+${el.getId()}" class="link-dark fw-normal px-5">Удалить</a>-->
             </div>
         </div>
     </div>
     <br>
-    <div>
-        <a th:href="'/bag'" class="link-dark fw-normal">Назад</a>
-    </div>
 </main>
 </body>
 </html>

@@ -10,29 +10,34 @@
 <body class="text-center text-bg-light">
 <main class="col-md-11 mx-auto ">
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>        <script type="text/javascript">window.onload = function () {
-    var dataPoints = [];
-    var chart = new CanvasJS.Chart("chartContainer",{
-        title:{
-            text:"Статистика "
-        },
-        data: [{
-            type: "pie",
-            dataPoints : dataPoints,
-        }]
-    });
-    $.getJSON("http://localhost:8080/admin/api/user/", function(data) {
-        $.each(data, function(key, value){
-            console.log(value);
-            dataPoints.push({label:(value.name) , y: parseInt(value.brand)});
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">window.onload = function () {
+        var dataPoints = [];
+        var chart = new CanvasJS.Chart("chartContainer", {
+            title: {
+                text: "Статистика "
+            },
+            data: [{
+                type: "pie",
+                dataPoints: dataPoints,
+            }]
         });
-        chart.render();
-    });
-}
-</script>        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        $.getJSON("http://localhost:8080/admin/api/user/", function (data) {
+            $.each(data, function (key, value) {
+                console.log(value);
+                dataPoints.push({label: (value.name), y: parseInt(value.brand)});
+            });
+            chart.render();
+        });
+    }
+    </script>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
     <div>
-        <form method="post"><button>back</button></form>
+        <h3 class="fw-light "></h3>
+        <form method="post">
+            <button class="btn btn-dark btn-lg">Создать</button>
+        </form>
     </div>
 </main>
 </body>

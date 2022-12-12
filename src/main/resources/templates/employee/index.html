@@ -4,13 +4,14 @@
         <title>Пользователи</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <div th:insert="fragment/header :: header"></div>
+        <div th:insert="fragment/header :: header"
+             style="position: sticky; top:0; z-index: 3"></div>
     </head>
 
     <style>
         .grid {
             display: grid;
-            grid-template-columns: repeat(4, 250px);
+            grid-template-columns: repeat(6, 250px);
             grid-template-rows: repeat(4, auto);
         }
         .grid > * {
@@ -36,8 +37,8 @@
         </div>
         <div class="grid">
             <div th:each="el : ${listPeople}">
-                <a th:href="'/employee/details/'+${el.id}" class="link-dark fw-normal" >
-                <p th:text="'Имя Фамилия: '+${el.name}"></p>
+                <a th:href="'/employee/details/'+${el.id}" class="link-dark">
+                <p th:text="'Имя Фамилия: '+${el.name}" class="fw-bold"></p>
                 <p th:text="'Статус: '+${el.active}"></p>
                 <div th:each="el1:${el.getRoles()}">
                     <p th:text="'Роль: '+${el1}"></p>

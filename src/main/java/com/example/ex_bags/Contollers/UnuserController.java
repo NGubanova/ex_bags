@@ -39,8 +39,6 @@ public class UnuserController {
     public String catalog(Model model) {
         Iterable<Bag> ListBag = bagRepository.findBagsByStatusTrue();
         model.addAttribute("listBag", ListBag);
-//        Iterable<Brand> brands = brandRepository.findAll();
-//        model.addAttribute("listBrand", brands);
         return "unuser/catalog";
     }
 
@@ -179,21 +177,10 @@ public class UnuserController {
             return "redirect:/login";
         }
 
-//        Iterable<Bag> ListBag = bagRepository.findBagsByUsersId(user.getId());
-//        model.addAttribute("listBag", ListBag);
-
         Iterable<Delivery> ListDelivery = deliveryRepository.findDeliveryByUserId(user.getId());
         List <Delivery> list_Delivery = deliveryRepository.findDeliveryByUserId(user.getId());
 
         model.addAttribute("listDelivery", ListDelivery);
-//        Iterable<Bag> b = bagRepository.findAll();
-//        model.addAttribute("listBag", b);
-
-//        for(Delivery delivery : list_Delivery){
-//            Iterable<Bag> ListBag = bagRepository.findBagsByDeliveriesId(delivery.getId());
-//
-//        }
-
         model.addAttribute("user", user);
         return "/profile";
     }

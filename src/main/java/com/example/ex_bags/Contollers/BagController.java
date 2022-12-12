@@ -6,6 +6,7 @@ import com.example.ex_bags.Repository.BrandRepository;
 import com.example.ex_bags.Repository.CellRepository;
 import com.example.ex_bags.Repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/bag")
+@PreAuthorize("hasAuthority('STOCKMAN')")
 public class BagController {
     @Autowired
     BagRepository bagRepository;
@@ -126,12 +127,6 @@ public class BagController {
         bag.setPurchase(bagRepository.findById(id).get().getPurchase());
         bagRepository.save(bag);
 
-        return ("redirect:/bag");
-    }
-
-    @GetMapping("/delete/{id}")
-    public String bagDelete(@PathVariable long id) {
-        bagRepository.deleteById(id);
         return ("redirect:/bag");
     }
 }

@@ -63,12 +63,6 @@ public class User {
     public User() {
     }
 
-    public User(String name, String username, Post post) {
-        this.name = name;
-        this.username = username;
-        this.post = post;
-    }
-
     public void removeBag(Bag b){
         this.bags.remove(b);
         b.getUsers().remove(this);

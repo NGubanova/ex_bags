@@ -1,36 +1,54 @@
 <div th:fragment="header"
      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-  <header class="p-1 text-bg-white">
-    <div class="container">
-      <div class ="border-bottom border-dark">
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="not hasAnyAuthority('ADMIN', 'COURIER', 'STOCKMAN', 'HR')" href="/catalog">КАТАЛОГ</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="not hasAnyAuthority('ADMIN', 'COURIER', 'STOCKMAN', 'HR')" href="/cart">КОРЗИНА</a></li>
-          <li><a class="nav-link p-4" href="/profile" sec:authorize="not hasAnyAuthority('ADMIN', 'COURIER', 'STOCKMAN', 'HR')">
-            <img src="https://cdn-icons-png.flaticon.com/512/8840/8840964.png"
-                 width="30" height="30">
-          </a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')" href="/bag">Сумки</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('HR')" href="/employee">Пользователи</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('COURIER')" href="/order">Заказ</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')" href="/brand">Бренд</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')" href="/type">Тип</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')" href="/purchase">Закупки</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')" href="/cell">Ячейки</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('HR')" href="/post">Должности</a></li>
-          <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('ADMIN')" href="/admin">База данных</a></li>
-<!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/cart">КОРЗИНА</a></li>-->
-<!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/about">О НАС</a></li>-->
-<!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/offer">ПРОДАТЬ</a></li>-->
-<!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/contacts">КОНТАКТЫ</a></li>-->
-          <form th:action="@{/login}" method="post" sec:authorize="not hasAnyAuthority('USER', 'ADMIN', 'COURIER', 'STOCKMAN', 'HR')">
-            <input type="submit" value="Вoйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
-          </form>
-          <form th:action="@{/logout}" method="post" sec:authorize="hasAnyAuthority('USER', 'ADMIN', 'COURIER', 'STOCKMAN', 'HR')">
-          <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
-        </form>
-        </ul>
-      </div>
-    </div>
-  </header>
+    <header class="p-1 bg-light border-bottom border-dark">
+        <div class="container">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a class="nav-link p-4 text-black fs-5 fw-light"
+                       sec:authorize="not hasAnyAuthority('ADMIN', 'COURIER', 'STOCKMAN', 'HR')"
+                       href="/catalog">КАТАЛОГ</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light"
+                       sec:authorize="not hasAnyAuthority('ADMIN', 'COURIER', 'STOCKMAN', 'HR')"
+                       href="/cart">КОРЗИНА</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light"
+                       sec:authorize="not hasAnyAuthority('ADMIN', 'COURIER', 'STOCKMAN', 'HR')"
+                       href="/sale">ПРОДАТЬ</a></li>
+                <li><a class="nav-link p-4" href="/profile"
+                       sec:authorize="not hasAnyAuthority('ADMIN', 'COURIER', 'STOCKMAN', 'HR')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/8840/8840964.png"
+                         width="30" height="30">
+                </a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')"
+                       href="/bag">Сумки</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('HR')"
+                       href="/employee">Пользователи</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('COURIER')"
+                       href="/order">Заказ</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')"
+                       href="/brand">Бренд</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')"
+                       href="/type">Тип</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')"
+                       href="/purchase">Закупки</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('STOCKMAN')"
+                       href="/cell">Ячейки</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('HR')" href="/post">Должности</a>
+                </li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAnyAuthority('ADMIN')"
+                       href="/admin">База данных</a></li>
+                <!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/about">О НАС</a></li>-->
+                <!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/offer">ПРОДАТЬ</a></li>-->
+                <!--          <li><a class="nav-link p-4 text-black fs-5 fw-light" href="/contacts">КОНТАКТЫ</a></li>-->
+                <form th:action="@{/login}" method="post"
+                      sec:authorize="not hasAnyAuthority('USER', 'ADMIN', 'COURIER', 'STOCKMAN', 'HR')">
+                    <input type="submit" value="Вoйти"
+                           class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
+                </form>
+                <form th:action="@{/logout}" method="post"
+                      sec:authorize="hasAnyAuthority('USER', 'ADMIN', 'COURIER', 'STOCKMAN', 'HR')">
+                    <input type="submit" value="Выйти"
+                           class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
+                </form>
+            </ul>
+        </div>
+    </header>
 </div>
