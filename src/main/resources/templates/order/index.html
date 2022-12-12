@@ -4,7 +4,7 @@
         <title>Доставка</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <div th:insert="fragment/header :: headerOrder"></div>
+        <div th:insert="fragment/header :: header"></div>
     </head>
 
     <style>
@@ -24,9 +24,9 @@
     <body class="text-bg-light">
     <main class="col-md-11 mx-auto">
         <h1 class="text-center">Заказ</h1>
-        <div class="col-md-2 mx-auto">
-            <a href="/order/add"  class="btn btn-dark">Добавить</a>
-        </div></br>
+<!--        <div class="col-md-2 mx-auto">-->
+<!--            <a href="/order/add"  class="btn btn-dark">Добавить</a>-->
+<!--        </div></br>-->
 
         <div class="grid">
             <div th:each="el : ${listDelivery}">

@@ -38,44 +38,44 @@ public class OrderController {
         return ("/order/details");
     }
 
-    @GetMapping("/add")
-    public String deliveyAdd(Delivery delivery, Model model){
-        Iterable<User> users = employeeRepository.findAll();
-        model.addAttribute("listUser", users);
-        Iterable<Bag> bags = bagRepository.findAll();
-        model.addAttribute("bagList", bags);
-        return ("/order/add");
-    }
-
-    @PostMapping("/add")
-    public String deliveryAdd(@Valid Delivery delivery,
-                         BindingResult result,
-                         @RequestParam String listStatus,
-                         @RequestParam String listUser,
-                         Model model) {
-
-        Iterable<User> users = employeeRepository.findAll();
-        model.addAttribute("listUser", users);
-        Iterable<Bag> bags = bagRepository.findAll();
-        model.addAttribute("bagList", bags);
-
-        if (result.hasErrors())
-            return ("order/add");
-
-        delivery.setStatus(listStatus);
-        delivery.setUser(employeeRepository.findByName(listUser));
-
-        Iterable<Bag> bag_list = bagRepository.findAll();
-
-        for (Bag bag: bag_list){
-            if (bag.getDeliveries() == null){
-                delivery.getBags().add(bag);
-            }
-        }
-
-        deliveryRepository.save(delivery);
-        return "redirect:/order";
-    }
+//    @GetMapping("/add")
+//    public String deliveyAdd(Delivery delivery, Model model){
+//        Iterable<User> users = employeeRepository.findAll();
+//        model.addAttribute("listUser", users);
+//        Iterable<Bag> bags = bagRepository.findBagsByStatusTrue();
+//        model.addAttribute("bagList", bags);
+//        return ("/order/add");
+//    }
+//
+//    @PostMapping("/add")
+//    public String deliveryAdd(@Valid Delivery delivery,
+//                         BindingResult result,
+//                         @RequestParam String listStatus,
+//                         @RequestParam String listUser,
+//                         Model model) {
+//
+//        Iterable<User> users = employeeRepository.findAll();
+//        model.addAttribute("listUser", users);
+//        Iterable<Bag> bags = bagRepository.findBagsByStatusTrue();
+//        model.addAttribute("bagList", bags);
+//
+//        if (result.hasErrors())
+//            return ("order/add");
+//
+//        delivery.setStatus(listStatus);
+//        delivery.setUser(employeeRepository.findByName(listUser));
+//
+//        Iterable<Bag> bag_list = bagRepository.findAll();
+//
+//        for (Bag bag: bag_list){
+//            if (bag.getDeliveries() == null){
+//                delivery.getBags().add(bag);
+//            }
+//        }
+//
+//        deliveryRepository.save(delivery);
+//        return "redirect:/order";
+//    }
 
     @GetMapping("/edit/{id}")
     public String deliveryEdit(Model model,
@@ -115,10 +115,10 @@ public class OrderController {
         deliveryRepository.save(delivery);
         return "redirect:/order";
     }
-
-    @GetMapping("/delete/{id}")
-    public String bagDelete(@PathVariable long id) {
-        deliveryRepository.deleteById(id);
-        return ("redirect:/order");
-    }
+//
+//    @GetMapping("/delete/{id}")
+//    public String bagDelete(@PathVariable long id) {
+//        deliveryRepository.deleteById(id);
+//        return ("redirect:/order");
+//    }
 }

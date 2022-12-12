@@ -41,7 +41,7 @@ public class RegistrationController {
             model.addAttribute("error", "Эл. почта занята!");
             return ("registration");
         }
-
+        employee.setPhone("+7(___)-___-__-__");
         employee.setActive(true);
         employee.setRoles(Collections.singleton(Role.USER));
         Post post = postRepository.findById(2L).orElseThrow();

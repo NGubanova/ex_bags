@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <title>Корзина</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <div th:insert="fragment/header :: headerUser"></div>
+  <div th:insert="fragment/header :: header"></div>
 </head>
+
+<style>
+    a{
+        text-decoration: none
+    }
+</style>
+
 <body class="text-bg-light">
 <main class="col-md-11 mx-auto">
     <h1 class="text-center">Kорзина</h1>
@@ -21,15 +28,29 @@
                     class="display-1 fw-bold pb-4"></h4>
                 <h4 th:text="${el.getPurchase().model}"></h4>
             </div>
-            <div class="feature border-bottom border-second col">
+            <div class="feature border-bottom border-second col fs-3 fw-light">
                 <p th:text="'Тип: '+${el.getPurchase().type.getName()}"></p>
                 <p th:text="'Цвет: '+${el.getPurchase().color}"></p>
                 <p th:text="'Состояние: '+${el.getPurchase().status}"></p>
-                <p th:text="'Цена: '+${el.price}"></p>
             </div>
             <div class="row">
-                <a th:href="'/cart/delete/'+${el.getId()}" class="link-dark fw-normal px-5">Удалить</a>
+                <div class="col"></div>
+                <div class="col fw-bold fs-4">
+                    <p th:text="${el.price}+' P'"></p></div>
+                <form method="post" class="col">
+                    <input type="text" readonly hidden name="id" th:value="${el.id}">
+                    <input type="submit" value="Удалить" class="btn btn-light">
+                </form>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col align-items-end fs-3 justify-content-end" style="width: 600px">
+            <div th:each="t:${amount}" class="border-bottom border-second py-3 fw-bold mb-4">
+                <p th:text="'ИТОГО К ОПЛАТЕ:     '+${t}+' P'"></p>
+            </div>
+            <a th:href="'/process'" class="display-3 link-dark fw-normal px-5 py-1 text-center border border-dark rounded-pill">ОФОРМИТЬ</a>
         </div>
     </div>
 </main>

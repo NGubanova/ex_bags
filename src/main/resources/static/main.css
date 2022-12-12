@@ -1,0 +1,365 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: "Segoe UI Light", sans-serif;
+}
+
+
+/*
+    Заголовок
+ */
+
+.dashboard-header {
+    padding-left: 15px;
+    grid-column: span 2;
+}
+
+.dashboard-header__logo {
+    font-size: 2.2em;
+}
+
+
+
+/*
+    Левое меню
+ */
+
+/* ширина скролбара */
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+.sidebar-menu {
+    overflow-y: auto;
+}
+
+.sidebar-menu:hover .sidebar-menu__subitems {
+    display: block;
+}
+
+.sidebar-menu__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-menu__item > a {
+    text-decoration: none;
+    font-size: 2em;
+    display: block;
+    margin: 1px 0;
+    padding: 10px 10px;
+    border: var(--border);
+}
+
+.sidebar-menu__item > a > i {
+    float: right;
+    padding-top: 2px;
+    padding-right: 5px;
+}
+
+.sidebar-menu__item > a > i:first-child {
+    float: left;
+}
+
+
+/*
+Стили для подменю
+ */
+
+.sidebar-menu__subitems {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+}
+
+.sidebar-menu__subitem > a {
+    text-decoration: none;
+    font-size: .9em;
+    display: block;
+    margin: 1px 0;
+    padding: 10px 30px;
+    border: var(--border);
+}
+
+.sidebar-menu__subitem > a > i:first-child {
+    padding-right: 5px;
+}
+
+
+/*
+    Главный контент
+*/
+.bot2:hover {
+    background-position: 0 -102%;
+}
+.bot2:focus{
+               background-position: 0 -102%;
+           }
+.bot3:hover {
+    background-position: 0 -102%;
+}
+.bot3:focus{
+               background-position: 0 -102%;
+           }
+.bot4:hover {
+    background-position: 0 -102%;
+}
+.bot4:focus{
+               background-position: 0 -102%;
+           }
+.inline{
+    display:flex;
+    list-style:none;
+}
+.inline-scroll
+{
+    display:flex;
+    list-style:none;
+    flex-direction: row;
+    overflow-y:scroll;
+    width:18%;
+
+}
+ .modal {
+      position: fixed;
+      /* фиксированное положение */
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      /* цвет фона */
+      z-index: 1050;
+      opacity: 0;
+      /* по умолчанию модальное окно прозрачно */
+      -webkit-transition: opacity 400ms ease-in;
+      -moz-transition: opacity 400ms ease-in;
+      transition: opacity 400ms ease-in;
+      /* анимация перехода */
+      pointer-events: none;
+      /* элемент невидим для событий мыши */
+    }
+
+    /* при отображении модального окно */
+    .modal:target {
+      opacity: 1;
+      pointer-events: auto;
+      overflow-y: auto;
+    }
+
+    /* ширина модального окна и его отступы от экрана */
+    .modal-dialog {
+      position: relative;
+      width: auto;
+      margin: 10px;
+    }
+
+    @media (min-width: 576px) {
+      .modal-dialog {
+        max-width: 500px;
+        margin: 30px auto;
+      }
+    }
+
+    /* свойства для блока, содержащего контент модального окна */
+    .modal-content {
+      position: relative;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      border-radius: .3rem;
+      outline: 0;
+    }
+
+    @media (min-width: 768px) {
+      .modal-content {
+      }
+    }
+
+    /* свойства для заголовка модального окна */
+    .modal-header {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      padding: 15px;
+      border-bottom: 1px solid #eceeef;
+    }
+
+    .modal-title {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 1.5;
+      font-size: 2.25rem;
+      font-weight: 500;
+    }
+
+    /* свойства для кнопки "Закрыть" */
+    .close {
+      float: right;
+      font-family: sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+      opacity: .5;
+      text-decoration: none;
+    }
+
+    /* свойства для кнопки "Закрыть" при нахождении её в фокусе или наведении */
+    .close:focus,
+    .close:hover {
+      text-decoration: none;
+      cursor: pointer;
+      opacity: .75;
+    }
+
+    /* свойства для блока, содержащего основное содержимое окна */
+    .modal-body {
+      position: relative;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 15px;
+      overflow: auto;
+    }
+ .highload4:checked:before {
+     align:center;
+     padding: initial;
+     font-weight: bold;
+ }
+
+ .wrapper {
+   width: 100%;
+   margin: 0 auto;
+ }
+ .tabs {
+   position: relative;
+   height: 14.75rem;
+ }
+ .tabs::before,
+ .tabs::after {
+   content: "";
+   display: table;
+ }
+ .tabs::after {
+   clear: both;
+ }
+ .tab {
+   float: left;
+ }
+ .tab-switch {
+   display: none;
+ }
+ .tab-label {
+   position: relative;
+   display: block;
+   line-height: 2.75em;
+   height: 3em;
+   padding: 0 1.618em;
+   cursor: pointer;
+   top: 0;
+   transition: all 0.25s;
+ }
+ .tab-label:hover {
+   top: -0.25rem;
+   transition: top 0.25s;
+ }
+ .tab-content {
+    width: 100%;
+   position: absolute;
+   z-index: 1;
+   top: 2.75em;
+   left: 0;
+   padding: 1.618rem;
+   background: #fff;
+   opacity: 0;
+   transition: all 0.35s;
+ }
+ .tab-switch:checked + .tab-label {
+   background: #fff;
+   border-bottom: 0;
+   transition: all 0.35s;
+   z-index: 1;
+   top: -0.0625rem;
+ }
+ .tab-switch:checked + label + .tab-content {
+   z-index: 2;
+   opacity: 1;
+   transition: all 0.35s;
+ }
+ .grid-container {
+  display: grid;
+  grid-template-areas: "post-1 post-3"
+                       "post-1 post-4"
+                       "post-2 post-4";
+  grid-template-rows: repeat(3, 200px);
+  grid-template-columns: repeat(2, 1fr);
+ }
+ .post-1 {
+   grid-area: post-1;
+ }
+ .post-2 {
+   grid-area: post-2;
+ }
+ .post-3 {
+   grid-area: post-3;
+ }
+ .post-4 {
+   grid-area: post-4;
+ }
+.select-box {
+  position: relative;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+  font-size: 18px;
+  }
+
+  .count
+  {
+    display: flex;
+  }
+  .count .change
+  {
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .count input
+  {
+  max-width: 55px;
+  text-align: center;
+  font-weight: 700;
+  background-color: #fff;
+  border: none;
+  border-radius: 3px;
+  margin: 0 5px;
+  }

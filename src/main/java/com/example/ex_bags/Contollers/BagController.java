@@ -38,8 +38,8 @@ public class BagController {
     }
 
     @GetMapping("/filter")
-    public  String bagFilterBrand(@RequestParam String listBrand,
-                                  Model model){
+    public String bagFilterBrand(@RequestParam String listBrand,
+                                 Model model) {
         Iterable<Brand> brands = brandRepository.findAll();
         model.addAttribute("listBrand", brands);
         List<Bag> bagList = bagRepository.findByPurchase_BrandName(listBrand);
@@ -53,8 +53,8 @@ public class BagController {
         model.addAttribute("listCell", cells);
         Iterable<Purchase> purchases = purchaseRepository.findAll();
         ArrayList<Purchase> purchaseArrayList = new ArrayList<>();
-        for (Purchase pur:purchases){
-            if (pur.getBags() == null){
+        for (Purchase pur : purchases) {
+            if (pur.getBags() == null) {
                 purchaseArrayList.add(pur);
             }
         }
@@ -73,8 +73,8 @@ public class BagController {
         model.addAttribute("listCell", cells);
         Iterable<Purchase> purchases = purchaseRepository.findAll();
         ArrayList<Purchase> purchaseArrayList = new ArrayList<>();
-        for (Purchase pur:purchases){
-            if (pur.getBags() == null){
+        for (Purchase pur : purchases) {
+            if (pur.getBags() == null) {
                 purchaseArrayList.add(pur);
             }
         }
@@ -91,7 +91,7 @@ public class BagController {
 
     @GetMapping("/details/{id}")
     public String bagDetails(Model model,
-                                  @PathVariable long id) {
+                             @PathVariable long id) {
         Bag bag = bagRepository.findById(id).orElseThrow();
         model.addAttribute("bag", bag);
         return ("/bag/details");
@@ -99,7 +99,7 @@ public class BagController {
 
     @GetMapping("/edit/{id}")
     public String bagEdit(Model model,
-                               @PathVariable long id) {
+                          @PathVariable long id) {
         Bag bag = bagRepository.findById(id).orElseThrow();
         model.addAttribute("bag", bag);
         Iterable<Cell> cells = cellRepository.findAll();
@@ -111,9 +111,9 @@ public class BagController {
 
     @PostMapping("/edit/{id}")
     public String bagEdit(@Valid Bag bag,
-                               BindingResult result, Model model,
-                               @RequestParam Long id,
-                               @RequestParam Long listCell) {
+                          BindingResult result, Model model,
+                          @RequestParam Long id,
+                          @RequestParam Long listCell) {
 
         Iterable<Cell> cells = cellRepository.findAll();
         model.addAttribute("listCell", cells);

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <div th:insert="fragment/header :: headerEmployee"></div>
+  <div th:insert="fragment/header :: header"></div>
 </head>
 
 <body class="text-bg-light">
@@ -18,6 +18,10 @@
       <input type="text" name="username" th:field="*{employee.username}" autocomplete="off" placeholder="Эл. почта"
            class=" fs-4 fw-light form-control border-success border-3">
       <div th:if="${#fields.hasErrors('employee.username')}" th:errors="*{employee.username}"></div><br/>
+
+      <input type="text" name="phone" th:field="*{employee.phone}" autocomplete="off" placeholder="Телефон"
+           class=" fs-4 fw-light form-control border-success border-3">
+      <div th:if="${#fields.hasErrors('employee.phone')}" th:errors="*{employee.phone}"></div><br/>
 
       <input type="password" name="password" th:field="*{employee.password}" placeholder="Пароль"
            class=" fs-4 fw-light form-control border-success border-3">

@@ -47,6 +47,9 @@ public class EmployeeController {
         if(result.hasErrors())
             return ("employee/action");
 
+        if (employee.getPhone() == ""){
+            employee.setPhone("+7(___)-___-__-__");
+        }
         employee.setActive(true);
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         employeeRepository.save(employee);
@@ -88,6 +91,10 @@ public class EmployeeController {
 
         if (result.hasErrors())
             return ("/employee/edit");
+
+        if (user.getPhone() == ""){
+            user.setPhone("+7(___)-___-__-__");
+        }
 
         user.getRoles().clear();
         for(String role: roles){

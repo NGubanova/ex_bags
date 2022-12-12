@@ -2,9 +2,7 @@ package com.example.ex_bags.Models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -24,16 +22,11 @@ public class Delivery {
     @NotBlank(message = "Поле не должно быть пустым!")
     private String day;
     private String period;
-
-//    @NotBlank(message = "Поле не должно быть пустым!")
-//    @Size(min = 2, max = 255, message = "Поле должно содержать от 2 до 255 символов")
-//    private String comment;
     private String type;
-
-//    @NotBlank(message = "Поле не должно быть пустым!")
-//    @Size(min = 2, max = 100, message = "Поле должно содержать от 2 до 30 символов")
     private String payment;
     private String status;
+
+    private Integer amount;
 
     @ManyToMany
     @JoinTable(name="bag_delivery",
@@ -84,22 +77,6 @@ public class Delivery {
         this.period = period;
     }
 
-//    public Integer getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(Integer price) {
-//        this.price = price;
-//    }
-//
-//    public String getComment() {
-//        return comment;
-//    }
-//
-//    public void setComment(String comment) {
-//        this.comment = comment;
-//    }
-
     public String getType() {
         return type;
     }
@@ -130,5 +107,13 @@ public class Delivery {
 
     public void setBags(List<Bag> bags) {
         this.bags = bags;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 }

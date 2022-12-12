@@ -11,5 +11,9 @@ public interface BagRepository extends CrudRepository<Bag, Long> {
 
     public List<Bag> findBagsByUsersId(Long id);
 
-    Bag deleteByU
+    public List<Bag> findBagsByDeliveriesId(Long id);
+    public List<Bag> findBagsByDeliveriesOrderByUsersId(Long id);
+
+    public List<Bag> findBagsByStatusTrue();
+    Bag removeBagsByUsersId(long id);
 }

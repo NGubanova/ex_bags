@@ -26,14 +26,18 @@ public class User {
     message = "Не корректно введена почта")
     private String username;
 
+//    @Pattern(regexp = "^[+][0-9][(][0-9][0-9][0-9][)][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]$",
+//            message = "Телефон должен быть записана в формате +7(___)-___-__-__")
+    private String phone;
+
     @Pattern(regexp = "^(?=.*[0-9])" +
         "(?=.*[a-z])" +
         "(?=.*[A-Z])" +
         "(?=.*[!@#$%^&+=])" +
         "(?=\\S+$)" +
         ".{6,255}", message = "Пароль должен быть не меньше 6 символов,"+ "\n" +
-            "иметь числа и латинкие строчные и заглавные буквы," + "\n" +
-            "а также специальные символы ")
+            "иметь числа и латинские строчные и заглавные буквы," + "\n" +
+            "а также специальные символы")
     private String password;
 
     private Boolean active;
@@ -56,9 +60,6 @@ public class User {
             inverseJoinColumns=@JoinColumn(name="bag_id"))
     private List<Bag> bags;
 
-//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-//    private Collection<Sale> sales;
-
     public User() {
     }
 
@@ -66,6 +67,11 @@ public class User {
         this.name = name;
         this.username = username;
         this.post = post;
+    }
+
+    public void removeBag(Bag b){
+        this.bags.remove(b);
+        b.getUsers().remove(this);
     }
 
     public Long getId() {
@@ -90,6 +96,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
@@ -140,11 +154,4 @@ public class User {
         this.bags = bags;
     }
 
-    //    public Collection<Sale> getSales() {
-//        return sales;
-//    }
-//
-//    public void setSales(Collection<Sale> sales) {
-//        this.sales = sales;
-//    }
 }

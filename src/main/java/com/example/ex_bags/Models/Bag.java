@@ -3,9 +3,7 @@ package com.example.ex_bags.Models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
 public class Bag {
@@ -17,14 +15,10 @@ public class Bag {
     private String image;
 
     @NotNull(message = "Введите цену сумки")
-    private  Integer price;
-
-//    @NotBlank(message = "Заполните описание")
-//    @Size(min=6, max=255, message = "Длина описание должна составлять от 6 до 255 символов")
-//    private String description;
+    private Integer price;
 
     @OneToOne(optional = true, cascade = CascadeType.REFRESH)
-    @JoinColumn(name="purchase_id")
+    @JoinColumn(name = "purchase_id")
     private Purchase purchase;
 
     private boolean status;
@@ -33,18 +27,19 @@ public class Bag {
     private Cell cell;
 
     @ManyToMany
-    @JoinTable(name="bag_delivery",
-            joinColumns=@JoinColumn(name="bag_id"),
-            inverseJoinColumns=@JoinColumn(name="delivery_id"))
+    @JoinTable(name = "bag_delivery", joinColumns = @JoinColumn(name = "bag_id"), inverseJoinColumns = @JoinColumn(name = "delivery_id"))
     private List<Delivery> deliveries;
 
     @ManyToMany
-    @JoinTable(name="bag_user",
-            joinColumns=@JoinColumn(name="bag_id"),
-            inverseJoinColumns=@JoinColumn(name="user_id"))
+    @JoinTable(name = "bag_user", joinColumns = @JoinColumn(name = "bag_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;
 
     public Bag() {
+    }
+
+    public void removeUsers(User u) {
+        this.users.remove(u);
+        u.getBags().remove(this);
     }
 
     public Long getId() {
@@ -62,14 +57,6 @@ public class Bag {
     public void setPrice(Integer price) {
         this.price = price;
     }
-
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
 
     public Purchase getPurchase() {
         return purchase;
