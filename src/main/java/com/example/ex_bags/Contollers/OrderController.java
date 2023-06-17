@@ -38,6 +38,8 @@ public class OrderController {
                              @PathVariable long id) {
         Delivery delivery = deliveryRepository.findById(id).orElseThrow();
         model.addAttribute("delivery", delivery);
+        Iterable<Status> values = List.of(Status.values());
+        model.addAttribute("status", values);
         return ("/order/details");
     }
 
@@ -53,23 +55,18 @@ public class OrderController {
         model.addAttribute("status", values);
         return ("/order/edit");
     }
-    @PostMapping("/edit/{id}")
+    @PostMapping("/details/{id}")
     public String deliveryEdit(@Valid Delivery delivery,
                               BindingResult result,
                               @RequestParam String listStatus,
                               Model model) {
-
+        Iterable<Bag> bags = bagRepository.findAll();
+        model.addAttribute("bagList", bags);
         Iterable<Status> values = List.of(Status.values());
         model.addAttribute("status", values);
 
-        if (result.hasErrors())
-            return ("order/edit");
-
+        delivery = deliveryRepository.findById(delivery.getId()).orElseThrow();
         delivery.setStatus(listStatus);
-        delivery.setAmount(deliveryRepository.findById(delivery.getId()).orElseThrow().getAmount());
-
-        delivery.setUser(deliveryRepository.findById(delivery.getId()).get().getUser());
-
         deliveryRepository.save(delivery);
         return "redirect:/order";
     }

@@ -10,4 +10,3 @@ public enum Colors {
         белый,
         черный
 }
-

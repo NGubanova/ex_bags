@@ -11,7 +11,4 @@ public interface EmployeeRepository extends JpaRepository<User, Long> {
     public List<User> findByNameContaining(String name);
     User findByName(String name);
     User findByUsername(String username);
-
-//    public List<User> findByBag
-    User removeUsersByBagsId(long id);
 }

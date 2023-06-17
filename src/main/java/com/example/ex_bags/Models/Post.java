@@ -12,6 +12,16 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                ", users=" + users +
+                '}';
+    }
+
     @NotBlank(message = "Заполните название должности")
     @Size(min=6, max=30)
     private String name;

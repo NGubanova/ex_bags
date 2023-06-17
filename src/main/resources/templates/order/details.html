@@ -10,6 +10,16 @@
 </head>
 
 <style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 170px);
+        grid-template-rows: repeat(6, auto);
+    }
+
+    .grid > * {
+        margin: 1px;
+    }
+
     a {
         text-decoration: none
     }
@@ -17,23 +27,43 @@
 
 <body class=" text-center text-bg-light">
 <main class="col-md-5 mx-auto pt-5">
-    <div th:each="el : ${delivery}"
+    <form th:object="${delivery}" method="post"
          class="row rounded-4 border border-dark text-start p-5 bg-white">
-        <div class="feature col">
-            <h4 th:text="'Имя: '+${el.user.getName()}"
-                class="display-1 fw-bold pb-6"></h4>
-            <h4 th:text="'Адрес: '+${el.address}"></h4>
-            <p th:text="'День доставки: '+${el.day}"></p>
-            <p th:text="'Период: '+${el.period}"></p>
-            <p th:text="'Тип доставки: '+${el.type}"></p>
-            <p th:text="'Способ оплаты: '+${el.payment}"></p>
-            <p th:text="'Статус доставки: '+${el.status}"></p>
-            <div
-                    class="border-top">
-                <a th:href="'/order/edit/'+${el.getId()}" class="link-dark fw-normal">Изменить</a>
+
+        <div class="col grid">
+            <div class="grid" th:each="bagList: ${delivery.bags}">
+                <div>
+                    <img alt="photoBag" class="img-thumbnail rounded" th:src="${bagList.getImage()}"></br>
+                    <label th:text="${bagList.purchase.getModel()}"></label><br>
+                    <label th:text="${bagList.price}+' P'"></label>
+                </div>
             </div>
         </div>
-    </div>
+        <br/>
+
+        <div class="feature col">
+            <input name="id" readonly th:field="*{id}" th:value="*{id}" type="hidden"><br/>
+            <h4 th:text="'Имя: '+*{user.name}"
+                class="display-1 fw-bold pb-6"></h4>
+            <h4 th:text="'Адрес: '+*{address}"></h4>
+            <p th:text="'День доставки: '+*{day}"></p>
+            <p th:text="'Период: '+*{period}"></p>
+            <p th:text="'Тип доставки: '+*{type}"></p>
+            <p th:text="'Способ оплаты: '+*{payment}"></p>
+
+            <div class="form-floating">
+                <select class="form-select form-select-lg border-dark fw-light" id="listStatus" name="listStatus"
+                        style="height:60px">
+                    <div th:each="element : ${status}">
+                        <option th:text="${element}"></option>
+                    </div>
+                </select>
+                <label for="listStatus">Статус</label>
+            </div>
+            <br/>
+            <input class="btn btn-dark" type="submit" value="Изменить"><br/>
+        </div>
+    </form>
 </main>
 </body>
 </html>

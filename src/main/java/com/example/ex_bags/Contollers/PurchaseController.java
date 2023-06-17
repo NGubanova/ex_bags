@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/purchase")
-@PreAuthorize("hasAuthority('STOCKMAN')")
+@PreAuthorize("hasAuthority('MANAGER')")
 public class PurchaseController {
     @Autowired
     PurchaseRepository purchaseRepository;

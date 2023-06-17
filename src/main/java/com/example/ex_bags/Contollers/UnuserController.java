@@ -4,6 +4,7 @@ package com.example.ex_bags.Contollers;
 import com.example.ex_bags.Models.*;
 import com.example.ex_bags.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
+@PreAuthorize("not hasAnyAuthority('ADMIN', 'COURIER', 'STOCKMAN', 'HR','MANAGER')")
 public class UnuserController {
 
     @Autowired
@@ -132,6 +134,8 @@ public class UnuserController {
 
         return "/unuser/orderAdd";
     }
+
+
 
     @PostMapping("/process")
     public String process(@Valid Delivery delivery,

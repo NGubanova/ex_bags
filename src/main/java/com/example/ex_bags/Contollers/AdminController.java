@@ -1,23 +1,27 @@
 package com.example.ex_bags.Contollers;
+
 import com.example.ex_bags.Models.Brand;
+import com.example.ex_bags.Models.Post;
 import com.example.ex_bags.Models.Statistic;
+import com.example.ex_bags.Models.User;
 import com.example.ex_bags.Repository.BrandRepository;
+import com.example.ex_bags.Repository.PostRepository;
 import com.example.ex_bags.Repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
-@PreAuthorize("hasAuthority('ADMIN')")
+//@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
     @Autowired
     BrandRepository brandRepository;
@@ -29,7 +33,7 @@ public class AdminController {
         return ("statistic");
     }
 
-    @GetMapping("/api/user/")
+    @GetMapping("/api/brand/")
     public ResponseEntity<ArrayList> userallapi() {
 
         ArrayList<Statistic> a = new ArrayList<>();
@@ -60,4 +64,30 @@ public class AdminController {
         else
         { return("statistic");    }
     }
+//
+//
+//    @DeleteMapping("/api/users/del/{id}")
+//    public ResponseEntity DeleteUserApi(@PathVariable long id) throws Exception {
+//
+//        User book = userRepositorie.findById(id)
+//                .orElseThrow(() -> new Exception());
+//        userRepositorie.delete(book);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @GetMapping("/api/users/view")
+//    public ResponseEntity<List<String>> getAllNotes() {
+//        List<String> users = new ArrayList<>();
+//        Iterable<User> iu = userRepositorie.findAll();
+//        for (User us : iu
+//        ) {
+//            users.add(us.toString());
+//        }
+//        return ResponseEntity.ok(users);
+//    }
+//
+//    @PostMapping("/api/provider")
+//    public ResponseEntity<Provider> CreateUserApi(@Valid @RequestBody Provider user) {
+//        return ResponseEntity.ok(providerRepositorie.save(user));
+//    }
 }

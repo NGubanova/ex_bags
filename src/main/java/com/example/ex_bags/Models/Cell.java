@@ -22,6 +22,12 @@ public class Cell {
     public Cell() {
     }
 
+    public Cell(Long id, Integer column_, Integer row_) {
+        this.id = id;
+        this.column_ = column_;
+        this.row_ = row_;
+    }
+
     public Long getId() {
         return id;
     }

@@ -22,7 +22,7 @@
                 dataPoints: dataPoints,
             }]
         });
-        $.getJSON("http://localhost:8080/admin/api/user/", function (data) {
+        $.getJSON("http://localhost:8080/admin/api/brand/", function (data) {
             $.each(data, function (key, value) {
                 console.log(value);
                 dataPoints.push({label: (value.name), y: parseInt(value.brand)});
@@ -34,8 +34,10 @@
     <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
     <div>
+        </br>
         <h3 class="fw-light "></h3>
         <form method="post">
+            <h2>Создать Back Up базы данных</h2>
             <button class="btn btn-dark btn-lg">Создать</button>
         </form>
     </div>

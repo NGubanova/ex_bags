@@ -43,17 +43,32 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public String employeeAdd(@Valid User employee,
-                              BindingResult result){
-        if(result.hasErrors())
+    public String employeeAdd(@Valid User user,
+                              BindingResult result, Model model,
+                              @RequestParam String[] roles,
+                              @RequestParam String listPost){
+        Iterable<Role> roleList = List.of(Role.values());
+        model.addAttribute("roleName", roleList);
+        Iterable<Post> ListPost = postRepository.findAll();
+        model.addAttribute("listPost", ListPost);
+        Post post = postRepository.findByName(listPost);
+
+        if (result.hasErrors())
             return ("employee/action");
 
-        if (employee.getPhone() == ""){
-            employee.setPhone("+7(___)-___-__-__");
+
+        if (user.getPhone() == ""){
+            user.setPhone("+7(___)-___-__-__");
         }
-        employee.setActive(true);
-        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
-        employeeRepository.save(employee);
+
+        user.getRoles().clear();
+        for(String role: roles){
+            user.getRoles().add(Role.valueOf(role));
+        }
+        user.setPost(post);
+        user.setActive(true);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        employeeRepository.save(user);
         return "redirect:/employee";
     }
     @GetMapping("/details/{id}")

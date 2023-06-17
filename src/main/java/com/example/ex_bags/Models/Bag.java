@@ -31,7 +31,9 @@ public class Bag {
     private List<Delivery> deliveries;
 
     @ManyToMany
-    @JoinTable(name = "bag_user", joinColumns = @JoinColumn(name = "bag_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(name = "bag_user",
+            joinColumns = @JoinColumn(name = "bag_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;
 
     public Bag() {

@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@PreAuthorize("hasAuthority('STOCKMAN')")
+@PreAuthorize("hasAuthority('MANAGER')")
 public class TypeBrandController {
     @Autowired
     TypeRepository typeRepository;
